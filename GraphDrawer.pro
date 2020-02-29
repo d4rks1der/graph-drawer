@@ -16,10 +16,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    drawing.cpp \
+    graph.cpp \
     main.cpp \
     graphdrawer.cpp
 
 HEADERS += \
+    drawing.h \
+    graph.h \
     graphdrawer.h
 
 FORMS += \

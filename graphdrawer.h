@@ -2,6 +2,9 @@
 #define GRAPHDRAWER_H
 
 #include <QMainWindow>
+#include <QGraphicsView>
+#include "graph.h"
+#include "drawing.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GraphDrawer; }
