@@ -13,6 +13,7 @@ Drawing::Drawing(QGraphicsScene *scene, QPen pen, Graph g, int radius)
 
 void Drawing::drawGraph()
 {
+    scene->clear();
     const int SIZE = g.g.size();
     vpos.resize(SIZE);
     for (int i = 0; i < SIZE; i++){

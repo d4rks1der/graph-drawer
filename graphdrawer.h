@@ -14,11 +14,14 @@ class GraphDrawer : public QMainWindow
 {
     Q_OBJECT
 
+virtual void resizeEvent(QResizeEvent *event) override;
+
 public:
     GraphDrawer(QWidget *parent = nullptr);
     ~GraphDrawer();
 
 private:
     Ui::GraphDrawer *ui;
+    Drawing *dr;
 };
 #endif // GRAPHDRAWER_H

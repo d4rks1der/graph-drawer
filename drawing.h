@@ -25,7 +25,7 @@ public:
     QGraphicsRectItem *rectangle;
     QGraphicsSimpleTextItem *text;
     QPen pen;
-
+    vector<pair<int, int>> edgeCoordinates;
     Graph g;
 
     int radius;
