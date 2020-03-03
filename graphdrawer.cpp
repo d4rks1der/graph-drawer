@@ -2,6 +2,7 @@
 #include "ui_graphdrawer.h"
 #include <algorithm>
 #include <QResizeEvent>
+#include <QtDebug>
 
 GraphDrawer::GraphDrawer(QWidget *parent)
     : QMainWindow(parent)
@@ -13,8 +14,10 @@ GraphDrawer::GraphDrawer(QWidget *parent)
     //scene.setParent(ui->DrawingArea);
     ui->graphicsView->setScene(scene);
     Graph g;
-    g.addVertex();
-    g.addVertex();
+    for (int i = 0; i < 15; i++)
+        g.addVertex();
+    g.addEdge(1, 2, 10);
+    qDebug() << g.isEdgeExists(1, 2);
 
     dr = new Drawing(scene,
                      *(new QPen(Qt::black)),

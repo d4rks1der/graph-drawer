@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QGraphicsView>
+#include <QPoint>
 #include <QGraphicsSimpleTextItem>
 #include <QtMath>
 #include "graph.h"
@@ -25,14 +26,14 @@ public:
     QGraphicsRectItem *rectangle;
     QGraphicsSimpleTextItem *text;
     QPen pen;
-    vector<pair<int, int>> edgeCoordinates;
+    vector<QPoint> edgeCoordinates;
     Graph g;
 
     int radius;
     int x0;
     int y0;
     const double PI = 3.14159265;
-    vector<pair<int, int>> vpos; //vertex coordinates(first - x; second - y)
+    vector<pair<int, int>> vertexCoordinates; //
 
 };
 
