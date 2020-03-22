@@ -3,7 +3,7 @@
 Graph::Graph()
 {
     g = vector<vector<int>>();
-    edgesCount = 0;
+    edges = vector<pair<int, int>>();
 }
 
 void Graph::addVertex()
@@ -17,13 +17,24 @@ void Graph::addVertex()
 void Graph::addEdge(int v1, int v2, int weight)
 {
     g.at(v1 - 1).at(v2 - 1) = weight;
-    edgesCount++;
+    edges.push_back(std::make_pair(v1 - 1, v2 - 1));
 }
 
+
+//NEED TO FIX THIS METHOD
 void Graph::deleteEdge(int v1, int v2)
 {
-    g.at(v1 - 1).at(v2 - 1) = -1;
-    edgesCount--;
+    --v1;
+    --v2;
+    g.at(v1).at(v2) = -1;
+    for (auto it = edges.begin(); it != edges.end(); it++)
+    {
+        if (it->first == v1 && it->second == v2 || it->first == v2 && it->second == v1)
+        {
+            edges.erase(it);
+            break;
+        }
+    }
 }
 
 void Graph::deleteVertex(int v)
@@ -31,6 +42,10 @@ void Graph::deleteVertex(int v)
     for (auto it = g.begin(); it != g.end(); it++)
         it->erase(it->begin() + v);
     g.erase(g.begin() + v);
+
+    for (auto it = edges.begin(); it != edges.end(); it++)
+        if (it->first == v || it->second == v)
+            edges.erase(it);
 }
 
 bool Graph::isVertexExists(int v)
@@ -41,4 +56,10 @@ bool Graph::isVertexExists(int v)
 bool Graph::isEdgeExists(int v1, int v2)
 {
     return g.at(v1 - 1).at(v2 - 1) > 0;
+}
+
+void Graph::clearGraph()
+{
+    g.clear();
+    edges.clear();
 }

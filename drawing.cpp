@@ -7,8 +7,8 @@ Drawing::Drawing(QGraphicsScene *scene, QPen pen, Graph g, int radius)
     this->pen = pen;
     this->radius = radius;
     this->g = g;
-    this->x0 = radius / 8 * 10;
-    this->y0 = radius / 9 * 10;
+    this->x0 = radius * 22 / 20;
+    this->y0 = radius * 23 / 20;
 }
 
 void Drawing::drawGraph()
@@ -17,16 +17,16 @@ void Drawing::drawGraph()
     const int SIZE = g.g.size();
     vertexCoordinates.resize(SIZE);
     QFont font;
-    for (int i = 0; i < SIZE; i++){
+    for (int i = 0; i < SIZE; i++) {
         vertexCoordinates[i].first = x0 + radius * cos(2 * PI / SIZE * i);
         vertexCoordinates[i].second = y0 + radius * sin(2 * PI / SIZE * i);
         ellipse = scene->addEllipse(vertexCoordinates[i].first - 12, vertexCoordinates[i].second - 12, 22, 22, pen);
         text = new QGraphicsSimpleTextItem(ellipse);
-        if (i / 10 == 0){
+        if (i / 10 == 0) {
             QFont fnt("Times", 12);
             text->setX(vertexCoordinates[i].first - 5);
             text->setY(vertexCoordinates[i].second - 10);
-        }else{
+        }else {
             QFont fnt("Times", 10);
             text->setX(vertexCoordinates[i].first - 9);
             text->setY(vertexCoordinates[i].second - 10);
@@ -35,30 +35,47 @@ void Drawing::drawGraph()
         text->setText(QString::number(i + 1));
     }
 
-    edgeCoordinates.resize(g.edgesCount);
-    for (int i = 0; i < g.edgesCount; i++)
-    {
-        // loop for setting edge coordinates
-        /*if (i == 0){
-                    edgeCoordinates[i].setX(vertexCoordinates[i].first - 12);
-                    edgeCoordinates[i].setY(vertexCoordinates[i].second);
-                }
-                else if (i * 2 == SIZE){
-                    edgeCoordinates[i].setX(vertexCoordinates[i].first + 10);
-                    edgeCoordinates[i].setY(vertexCoordinates[i].second - 3);
-                }
-                else if (i * 4 == SIZE){
-                    edgeCoordinates[i].setX(vertexCoordinates[i].first - 1);
-                    edgeCoordinates[i].setY(vertexCoordinates[i].second - 12);
-                }
-                else if (i * 3 / 4 == SIZE){
-                    edgeCoordinates[i].setX(vertexCoordinates[i].first - 1);
-                    edgeCoordinates[i].setY(vertexCoordinates[i].second + 3);
-                }
-                else{
-                    edgeCoordinates[i].setX(vertexCoordinates[i].first - 12 * cos(2 * PI / SIZE * i));
-                    edgeCoordinates[i].setY(vertexCoordinates[i].second - 6 * sin(2 * PI / SIZE * i));
-                }*/
+    edgeCoordinates.resize(g.edges.size());
+
+    for (int t = 0; t < g.edges.size(); t++) {// loop for setting edge coordinates
+        int v1 = g.edges.at(t).first;
+        int v2 = g.edges.at(t).second;
+
+        if (v1 == 0) {
+            edgeCoordinates[t].first.setX(vertexCoordinates[v1].first - 12);
+            edgeCoordinates[t].first.setY(vertexCoordinates[v1].second);
+        } else if (v1 * 2 == SIZE) {
+            edgeCoordinates[t].first.setX(vertexCoordinates[v1].first + 10);
+            edgeCoordinates[t].first.setY(vertexCoordinates[v1].second - 3);
+        } else if (v1 * 4 == SIZE) {
+            edgeCoordinates[t].first.setX(vertexCoordinates[v1].first - 1);
+            edgeCoordinates[t].first.setY(vertexCoordinates[v1].second - 12);
+        } else if (v1 * 3 / 4 == SIZE) {
+            edgeCoordinates[t].first.setX(vertexCoordinates[v1].first - 1);
+            edgeCoordinates[t].first.setY(vertexCoordinates[v1].second + 3);
+        } else {
+            edgeCoordinates[t].first.setX(vertexCoordinates[v1].first - 14 * cos(2 * PI / SIZE * v1));
+            edgeCoordinates[t].first.setY(vertexCoordinates[v1].second - 6 * sin(2 * PI / SIZE * v1));
+        }
+        if (v2 == 0) {
+            edgeCoordinates[t].second.setX(vertexCoordinates[v2].first - 12);
+            edgeCoordinates[t].second.setY(vertexCoordinates[v2].second);
+        } else if (v2 * 2 == SIZE) {
+            edgeCoordinates[t].second.setX(vertexCoordinates[v2].first + 10);
+            edgeCoordinates[t].second.setY(vertexCoordinates[v2].second - 3);
+        } else if (v2 * 4 == SIZE) {
+            edgeCoordinates[t].second.setX(vertexCoordinates[v2].first - 1);
+                    edgeCoordinates[t].second.setY(vertexCoordinates[v2].second - 12);
+        } else if (v2 * 3 / 4 == SIZE) {
+            edgeCoordinates[t].second.setX(vertexCoordinates[v2].first - 1);
+            edgeCoordinates[t].second.setY(vertexCoordinates[v2].second + 3);
+        } else {
+            edgeCoordinates[t].second.setX(vertexCoordinates[v2].first - 12 * cos(2 * PI / SIZE * v2));
+            edgeCoordinates[t].second.setY(vertexCoordinates[v2].second - 6 * sin(2 * PI / SIZE * v2));
+        }
+
+        QLine *l = new QLine(edgeCoordinates[t].first, edgeCoordinates[t].second);
+        scene->addLine(*l, pen);
     }
 
 }
