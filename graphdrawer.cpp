@@ -13,7 +13,7 @@ GraphDrawer::GraphDrawer(QWidget *parent)
     ui->graphicsView->setScene(scene);
     Graph g;
 
-    const int NUM = 16;
+    const int NUM = 14;
 
     for (int i = 0; i < NUM; i++)
         g.addVertex();
@@ -21,8 +21,8 @@ GraphDrawer::GraphDrawer(QWidget *parent)
         for (int j = i + 1; j <= NUM; j++)
             if (j <= NUM)
                 g.addEdge(i, j, 5);
-    g.deleteEdge(4, 7);
-    //g.deleteVertex(11);
+    g.deleteEdge(4, 14);
+    g.deleteVertex(11);
     int rad = std::min(ui->DrawingArea->width(), ui->DrawingArea->height());
     dr = new Drawing(scene,
                      *(new QPen(Qt::black)),
@@ -33,8 +33,8 @@ GraphDrawer::GraphDrawer(QWidget *parent)
 
 void GraphDrawer::resizeEvent(QResizeEvent *event)
 {
-    int width = event->size().width();
-    int height = event->size().height();
+    //int width = event->size().width();
+    //int height = event->size().height();
     //int oldWidth = event->oldSize().width();
     //int oldHeight = event->oldSize().height();
     int rad = std::min(ui->DrawingArea->width(), ui->DrawingArea->height());
