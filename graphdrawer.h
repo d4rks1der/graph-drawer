@@ -19,9 +19,29 @@ virtual void resizeEvent(QResizeEvent *event) override;
 public:
     GraphDrawer(QWidget *parent = nullptr);
     ~GraphDrawer();
+    Drawing *dr;
+    Graph *g;
+
+private slots:
+    void on_AddVertexButton_clicked();
+
+    void on_DeleteVertexButton_clicked();
+
+    void on_AddEdgeButton_clicked();
+
+    void on_DeleteEdgeButton_clicked();
+
+    void on_kruskalRunButton_clicked();
+
+    void on_actionSave_triggered();
+
+    void on_actionLoad_triggered();
+
+    void on_clearGraphButton_clicked();
 
 private:
     Ui::GraphDrawer *ui;
-    Drawing *dr;
+
+
 };
 #endif // GRAPHDRAWER_H

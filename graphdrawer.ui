@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>420</height>
+    <height>504</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,12 +27,12 @@
         </property>
         <property name="maximumSize">
          <size>
-          <width>200</width>
+          <width>240</width>
           <height>16777215</height>
          </size>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <property name="usesScrollButtons">
          <bool>false</bool>
@@ -100,10 +100,16 @@
                  <item>
                   <layout class="QHBoxLayout" name="horizontalLayout_2">
                    <item>
-                    <widget class="QComboBox" name="AddVertexSelector"/>
+                    <widget class="QComboBox" name="DeleteVertexSelector"/>
                    </item>
                    <item>
                     <widget class="QPushButton" name="DeleteVertexButton">
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
                      <property name="text">
                       <string>delete</string>
                      </property>
@@ -131,6 +137,13 @@
                </size>
               </property>
              </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="clearGraphButton">
+              <property name="text">
+               <string>clear graph</string>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QGroupBox" name="groupBox_2">
@@ -166,10 +179,23 @@
                      <item>
                       <widget class="QComboBox" name="AddEdgeV2Selector"/>
                      </item>
+                     <item>
+                      <widget class="QLineEdit" name="weightInput">
+                       <property name="inputMask">
+                        <string/>
+                       </property>
+                      </widget>
+                     </item>
                     </layout>
                    </item>
                    <item>
                     <widget class="QPushButton" name="AddEdgeButton">
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
                      <property name="text">
                       <string>add</string>
                      </property>
@@ -221,15 +247,25 @@
                    <item>
                     <layout class="QVBoxLayout" name="verticalLayout_9">
                      <item>
-                      <widget class="QComboBox" name="DeleteEdgeV1Selector"/>
-                     </item>
-                     <item>
-                      <widget class="QComboBox" name="DeleteEdgeV2Selector"/>
+                      <widget class="QComboBox" name="DeleteEdgeSelector">
+                       <property name="minimumSize">
+                        <size>
+                         <width>70</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                      </widget>
                      </item>
                     </layout>
                    </item>
                    <item>
                     <widget class="QPushButton" name="DeleteEdgeButton">
+                     <property name="maximumSize">
+                      <size>
+                       <width>80</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
                      <property name="text">
                       <string>delete</string>
                      </property>
@@ -250,6 +286,25 @@
          <attribute name="title">
           <string>Kruskal algorithm</string>
          </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_12">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QPushButton" name="kruskalRunButton">
+              <property name="maximumSize">
+               <size>
+                <width>100</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>run</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
        </widget>
       </item>
@@ -313,7 +368,7 @@
      <x>0</x>
      <y>0</y>
      <width>640</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

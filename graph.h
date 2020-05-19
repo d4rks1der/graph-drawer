@@ -9,8 +9,11 @@ using std::pair;
 class Graph
 {
 public:
+    /* data structure for graph is adjacency matrix */
     vector<vector<int>> g;
-    vector<pair<int, int>> edges;
+
+    /* data structure for edges is vector with each element as 3 integers: v1, v2, weight */
+    vector<pair<pair<int, int>, int>> edges;
 
     Graph();
     void addVertex();
